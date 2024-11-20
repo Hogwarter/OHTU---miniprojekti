@@ -41,6 +41,25 @@ def new_reference():
     else:
         return "Invalid reference type", 400
 
+@app.route("/generate_book_reference", methods=["POST"])
+def generate_book_reference():
+    citekey = request.form.get("citekey")
+    author = request.form.get("author")
+    title = request.form.get("title")
+    publisher = request.form.get("publisher")
+    address = request.form.get("address")
+    year = request.form.get("year")
+
+    latex_reference = f"""@book{{{citekey},
+  author    = "{author}",
+  title     = "{title}",
+  publisher = "{publisher}",
+  address   = "{address}",
+  year      = {year}
+}}"""
+
+    return f"<pre>{latex_reference}</pre>"
+
 
 # testausta varten oleva reitti
 if test_env:
