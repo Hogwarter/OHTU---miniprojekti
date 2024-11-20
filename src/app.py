@@ -33,7 +33,13 @@ def toggle_todo(todo_id):
 
 
 
-
+@app.route("/new_reference", methods=["POST"])
+def new_reference():
+    ref_type = request.form.get("ref_type")
+    if ref_type == "book":
+        return render_template("book_form.html") 
+    else:
+        return "Invalid reference type", 400
 
 
 # testausta varten oleva reitti
