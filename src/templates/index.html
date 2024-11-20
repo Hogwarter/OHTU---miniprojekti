@@ -27,12 +27,13 @@ Latex Lähde App
   {% endfor %}
 </ul>
 
-<div>
-  <label for="dropdown">Tyyppi:</label>
-  <select id="dropdown" name="type" onchange="location = this.value;">
-    <option value="">Valitse</option>
-    <option value="/new_source?type=book">Book</option>
+<form action="/new_reference" method="POST">
+  <label for="ref_type">Tyyppi:</label>
+  <select id="ref_type" name="ref_type" required>
+      <option value="">Select</option>
+      <option value="book">Book</option>
   </select>
-</div>
+  <button type="submit">Submit</button>
+</form>
 
 {% endblock %}
