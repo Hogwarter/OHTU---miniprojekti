@@ -28,7 +28,11 @@ Latex Lähde App
 </ul>
 
 <div>
-  <a href="/new_todo">Create new todo</a>
+  <label for="dropdown">Tyyppi:</label>
+  <select id="dropdown" name="type" onchange="location = this.value;">
+    <option value="">Valitse</option>
+    <option value="/new_source?type=book">Book</option>
+  </select>
 </div>
 
 {% endblock %}
