@@ -1,5 +1,4 @@
-# Change Log / Definition of Done
-
+# Change Log
 ## Spintti 1
 * Käyttäjä pystyy valitsemaan lähteen tyypin, ja lisäämään lähteen tiedot tietokantaan.
 * Käyttäjä näkee aikaisemmin lisätyt lähteet.

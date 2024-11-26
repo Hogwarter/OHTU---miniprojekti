@@ -9,4 +9,4 @@ Yksi "pää"käyttäjä
 
 ### Luonnos käyttöliittymästä
 
-![Luonnos](./kayttoliittyma.jpeg)
+![Luonnos](https://github.com/Hogwarter/OHTU---miniprojekti/blob/main/Dokumentaatio/kayttoliittyma.jpeg)
