@@ -8,4 +8,5 @@ Yksi "pää"käyttäjä
 ## Käyttöliittymä
 
 ### Luonnos käyttöliittymästä
-kuva tähän
+
+![Luonnos](./kayttoliittyma.jpeg)

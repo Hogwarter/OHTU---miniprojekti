@@ -1,7 +1,14 @@
-#Change Log
+# Change Log / Definition of Done
 
-## Sprintti 1
+## Spintti 1
+* Käyttäjä pystyy valitsemaan lähteen tyypin, ja lisäämään lähteen tiedot tietokantaan.
+* Käyttäjä näkee aikaisemmin lisätyt lähteet.
+* 
 
-## Sprintti 2
+## Spintti 2
+* Käyttäjä voi hakea haluamansa lähteen tietokannasta hakutoiminnon avulla. Esim. Vuosiluku, ID...
+* 
 
-## Sprintti 3
+## Spintti 3
+* Käyttäjä pystyy poistamaan ja muokkaamaan aikaisemmin lisättyjä lähteitä.
+* 
