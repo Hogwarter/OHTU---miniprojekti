@@ -3,17 +3,18 @@ from sqlalchemy import text
 
 from entities.todo import Todo
 
-def get_todos():
-    result = db.session.execute(text("SELECT id, content, done FROM todos"))
-    todos = result.fetchall()
-    return [Todo(todo[0], todo[1], todo[2]) for todo in todos] 
+def get_books():
+    result = db.session.execute(text("SELECT * FROM books"))
+    books = result.fetchall()
+    return books 
 
-def set_done(todo_id):
-    sql = text("UPDATE todos SET done = TRUE WHERE id = :id")
-    db.session.execute(sql, { "id": todo_id })
-    db.session.commit()
+#def set_done(todo_id):
+#    sql = text("UPDATE todos SET done = TRUE WHERE id = :id")
+#    db.session.execute(sql, { "id": todo_id })
+#    db.session.commit()
 
-def create_todo(content):
-    sql = text("INSERT INTO todos (content) VALUES (:content)")
-    db.session.execute(sql, { "content": content })
+def generate_book_reference(citekey, author, title, publisher, address, year):
+    sql = text("INSERT INTO books (citekey, author, title, publisher, address, year) VALUES (:citekey, author, title, publisher, address, year)")
+    db.session.execute(sql, { "content": citekey, author, title, publisher, address, year })
     db.session.commit()
+    return
