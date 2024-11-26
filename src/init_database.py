@@ -1,4 +1,4 @@
-import db, app
+from Flask import db, app
 
 application = app
 application.app_context().push()

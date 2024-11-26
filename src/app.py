@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, jsonify, flash
+from flask import flask, redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
 from repositories.book_repository import get_books, generate_book_reference
 from config import app, test_env
