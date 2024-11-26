@@ -9,3 +9,10 @@ Dokumentaatio:
 - [Työaikakirjanpito](./Dokumentaatio/Tuntikirjanpito.md)
 - [Changelog](./Dokumentaatio/Changelog.md)
 
+
+Definition of done:
+* Koodi läpäisee kaikki automaattiset ja manuaalit testit
+* Testit läpäisevät kaikki vaatimukset
+* Sprintin tehtävät on integroitu main-branchiin
+* Asiakas on hyväksynyt sprintin tuoton
+
