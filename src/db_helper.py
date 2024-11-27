@@ -1,7 +1,7 @@
 from config import db, app
 from sqlalchemy import text
 
-table_name = "todos"
+table_name = "todo"
 
 def table_exists(name):
   sql_table_existence = text(
@@ -19,10 +19,22 @@ def table_exists(name):
   return result.fetchall()[0][0]
 
 def reset_db():
-  print(f"Clearing contents from table {table_name}")
-  sql = text(f"DELETE FROM {table_name}")
-  db.session.execute(sql)
-  db.session.commit()
+  with app.app_context():
+        # Droppaa existing table
+        db.session.execute(text("DROP TABLE IF EXISTS books;"))
+        
+        # Recreattaa table
+        db.session.execute(text("""        
+            CREATE TABLE IF NOT EXISTS books (
+                citekey TEXT NOT NULL,
+                author TEXT NOT NULL,
+                title TEXT NOT NULL,
+                publisher TEXT NOT NULL,
+                address TEXT NOT NULL,
+                year INTEGER NOT NULL
+            );"""))
+        
+        db.session.commit()
 
 def setup_db():
   if table_exists(table_name):

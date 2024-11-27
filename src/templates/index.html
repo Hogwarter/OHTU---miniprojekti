@@ -12,17 +12,19 @@ Latex Lähde App
   things still unfinished: {{ unfinished }}
 </div>
 
+<h3>Stored References</h3>
 <ul>
-  {% for todo in todos %}
-    <li style="display: flex">
-      <div>
-        {{ todo }} 
-      </div>
-      {% if not todo.done %}
-        <form action="/toggle_todo/{{ todo.id }}" method="post" style="margin-left: 10px;">
-          <button type="submit">mark as done</button>
-        </form>
-      {% endif %}
+  {% for book in books %}
+    <li>
+      <pre>
+@book{ {{ book.citekey }},
+  author = { {{book.author}} },
+  title = { {{book.title}} },
+  publisher = { {{ book.publisher }} },
+  address = { {{ book.address }} },
+  year = { {{ book.year }} }
+    }
+      </pre>
     </li>
   {% endfor %}
 </ul>
