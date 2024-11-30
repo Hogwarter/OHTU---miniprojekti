@@ -8,7 +8,7 @@ Dokumentaatio:
 - [Testausdokumentti](./Dokumentaatio/Testaus.md)
 - [Työaikakirjanpito](./Dokumentaatio/Tuntikirjanpito.md)
 - [Changelog](./Dokumentaatio/Changelog.md)
-- [Product Backlog](https://github.com/users/pronom8/projects/1/views/1)
+- [Product Backlog](https://helsinkifi-my.sharepoint.com/:x:/g/personal/nbleo_ad_helsinki_fi/EQHXOMkKRR9HoHAqoGDRjTQBO5WE0JgBWxgEZlVUB0VPGQ?e=zgXIkE)
 
 
 Definition of done:
