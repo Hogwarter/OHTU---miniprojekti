@@ -20,17 +20,23 @@ def get_all_books():
 #    db.session.commit()
 
 def generate_book_reference(citekey, author, title, publisher, address, year):
-    sql = text(""" 
-        INSERT INTO books (citekey, author, title, publisher, address, year) 
-        VALUES (:citekey, :author, :title, :publisher, :address, :year)
-    """)
-    db.session.execute(sql, { 
-        "citekey": citekey, 
-        "author": author, 
-        "title": title, 
-        "publisher": publisher, 
-        "address": address, 
-        "year": year 
-    })
-    db.session.commit()
-    return
+    try:
+        sql = text(""" 
+            INSERT INTO books (citekey, author, title, publisher, address, year) 
+            VALUES (:citekey, :author, :title, :publisher, :address, :year)
+        """)
+        db.session.execute(sql, { 
+            "citekey": str(citekey), 
+            "author": str(author), 
+            "title": str(title), 
+            "publisher": str(publisher), 
+            "address": str(address), 
+            "year": int(year) 
+        })
+        db.session.commit()
+        return print("DONEEEE")
+    except Exception as e:
+        print(f"Error: {e}")
+        return print("Voi voi taas.")
+    
+

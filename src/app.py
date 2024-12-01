@@ -8,7 +8,6 @@ from db_helper import reset_db
 
 @app.route("/")
 def index():
-    reset_db()
     books = get_all_books()
     articles = get_all_articles()
     inproceedings = get_all_inproceedings()
