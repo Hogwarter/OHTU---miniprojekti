@@ -1,8 +1,6 @@
 from config import db
 from sqlalchemy.sql import text
 
-#from entities.todo import Todo
-
 def get_articles(citekey):
     sql = ("SELECT * FROM articles WHERE citekey = :citekey")
     articles = db.session.execute(sql, {"citekey": citekey}).fetchall()
@@ -14,17 +12,23 @@ def get_all_articles():
     articles = result.fetchall()
     return articles
 
-def generate_articles_reference(citekey, author, title, publisher, address, year):
-    sql = text(""" 
-        INSERT INTO articles (citekey, author, title, publisher, address, year) 
-        VALUES (:citekey, :author, :title, :publisher, :address, :year)
-    """)
-    db.session.execute(sql, { 
-        "citekey": citekey, 
-        "author": author, 
-        "title": title, 
-        "publisher": publisher, 
-        "address": address, 
-        "year": year 
-    })
-    db.session.commit()
+def save_article_reference(citekey, author, title, publisher, address, year):
+    try:
+        sql = text(""" 
+            INSERT INTO articles (citekey, author, title, publisher, address, year) 
+            VALUES (:citekey, :author, :title, :publisher, :address, :year)
+        """)
+        db.session.execute(sql, { 
+            "citekey": str(citekey), 
+            "author": str(author), 
+            "title": str(title), 
+            "publisher": str(publisher), 
+            "address": str(address), 
+            "year": int(year) 
+        })
+        db.session.commit()
+        return print("DONEEEE")
+    except Exception as e:
+        print(f"Error: {e}")
+        return print("Voi voi taas.")
+

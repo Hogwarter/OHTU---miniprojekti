@@ -12,6 +12,17 @@ Latex Lähde App
   things still unfinished: {{ unfinished }}
 </div>
 
+<form action="/new_reference" method="POST">
+  <label for="ref_type">Tyyppi:</label>
+  <select id="ref_type" name="ref_type" required>
+      <option value="">Select</option>
+      <option value="book">Book</option>
+      <option value="article">Article</option>
+      <option value="inproceeding">Inproceeding</option>
+  </select>
+  <button type="submit">Submit</button>
+</form>
+
 <h3>Stored References</h3>
 <ul>
   {% for book in books %}
@@ -28,16 +39,35 @@ Latex Lähde App
     </li>
   {% endfor %}
 </ul>
-
-<form action="/new_reference" method="POST">
-  <label for="ref_type">Tyyppi:</label>
-  <select id="ref_type" name="ref_type" required>
-      <option value="">Select</option>
-      <option value="book">Book</option>
-      <option value="article">Article</option>
-      <option value="inproceeding">Inproceeding</option>
-  </select>
-  <button type="submit">Submit</button>
-</form>
+<ul>
+  {% for article in articles %}
+    <li>
+      <pre>
+@article{ {{ article.citekey }},
+  author = { {{article.author}} },
+  title = { {{article.title}} },
+  publisher = { {{ article.publisher }} },
+  address = { {{ article.address }} },
+  year = { {{ article.year }} }
+    }
+      </pre>
+    </li>
+  {% endfor %}
+</ul>
+<ul>
+  {% for inproceeding in inproceedings %}
+    <li>
+      <pre>
+@inproceeding{ {{ inproceeding.citekey }},
+  author = { {{inproceeding.author}} },
+  title = { {{inproceeding.title}} },
+  publisher = { {{ inproceeding.publisher }} },
+  address = { {{ inproceeding.address }} },
+  year = { {{ inproceeding.year }} }
+    }
+      </pre>
+    </li>
+  {% endfor %}
+</ul>
 
 {% endblock %}
