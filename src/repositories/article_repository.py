@@ -28,4 +28,3 @@ def generate_articles_reference(citekey, author, title, publisher, address, year
         "year": year 
     })
     db.session.commit()
-    return

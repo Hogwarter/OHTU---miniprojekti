@@ -3,7 +3,7 @@ from db_helper import reset_db
 from repositories.book_repository import get_books, get_all_books, generate_book_reference
 from repositories.article_repository import get_articles, get_all_articles, generate_articles_reference
 from repositories.inproceedings_repository import get_inproceedings, get_all_inproceedings, generate_inproceedings_reference
-from config import app, test_env
+from config import app, db, test_env
 from db_helper import reset_db
 
 @app.route("/")

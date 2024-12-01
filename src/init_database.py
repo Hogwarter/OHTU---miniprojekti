@@ -1,5 +1,6 @@
 from config import db, app
 from sqlalchemy import text
+from db_helper import reset_db
 
 
 application = app
@@ -47,6 +48,7 @@ def initialize_database():
         create_table_books()
         create_table_articles()
         create_table_inproceedings()
+        reset_db()
 
 if __name__ == "__main__":
     initialize_database()
