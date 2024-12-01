@@ -4,8 +4,8 @@ from sqlalchemy.sql import text
 #from entities.todo import Todo
 
 def get_inproceedings(citekey):
-    sql = ("SELECT * FROM inproceedings")
-    inproceedings = db.session.execute(sql, {"citekey": citekey}).result.fetchall()
+    sql = text("SELECT * FROM inproceedings WHERE citekey = :citekey")
+    inproceedings = db.session.execute(sql, {"citekey": citekey}).fetchall()
     return inproceedings 
 
 def get_all_inproceedings():

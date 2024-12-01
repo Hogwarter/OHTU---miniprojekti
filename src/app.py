@@ -4,25 +4,26 @@ from repositories.book_repository import get_books, get_all_books, generate_book
 from repositories.article_repository import get_articles, get_all_articles, generate_articles_reference
 from repositories.inproceedings_repository import get_inproceedings, get_all_inproceedings, generate_inproceedings_reference
 from config import app, test_env
-from util import validate_todo
+from db_helper import reset_db
 
 @app.route("/")
 def index():
+    reset_db()
     books = get_all_books()
     articles = get_all_articles()
     inproceedings = get_all_inproceedings()
-    return render_template("index.html", books=books, articles=articles, inproceedings=inproceedings, unfinished="some value") 
+    return render_template("index.html", books=books, articles=articles, inproceedings=inproceedings) 
 
 @app.route("/book_form")
-def new():
+def new_book():
     return render_template("book_form.html")
     
 @app.route("/article_form")
-def new():
+def new_article():
     return render_template("article_form.html")
 
 @app.route("/inproceedings_form")
-def new():
+def new_inproceeding():
     return render_template("inproceedings_form.html")
 
 
@@ -38,62 +39,62 @@ def new_reference():
     else:
         return "Invalid reference type", 400
 
-@app.route("/generate_book_reference", methods=["POST", "GET"])
-def generate_book_reference():
-    citekey = request.form.get("citekey")
-    author = request.form.get("author")
-    title = request.form.get("title")
-    publisher = request.form.get("publisher")
-    address = request.form.get("address")
-    year = request.form.get("year")
 
-    latex_reference = f"""@book{{{citekey},
+def generate_latex_reference(ref_type, citekey, author, title, publisher, address, year):
+    return f"""@{ref_type}{{{citekey},
   author    = "{author}",
   title     = "{title}",
   publisher = "{publisher}",
   address   = "{address}",
   year      = {year}
 }}"""
+
+@app.route("/generate_book_reference", methods=["POST", "GET"])
+def generate_book_reference_route():
+    try:
+        citekey = request.form.get("citekey")
+        author = request.form.get("author")
+        title = request.form.get("title")
+        publisher = request.form.get("publisher")
+        address = request.form.get("address")
+        year = request.form.get("year")
+    except Exception:
+        return "Error", 500
+    latex_reference = generate_latex_reference("book", citekey, author, title, publisher, address, year)
     generate_book_reference(citekey, author, title, publisher, address, year)
 
     return redirect("/")#f"<pre>{latex_reference}</pre>"
 
-@app.route("/generate_articles_reference", methods=["POST", "GET"])
-def generate_articles_reference():
-    citekey = request.form.get("citekey")
-    author = request.form.get("author")
-    title = request.form.get("title")
-    publisher = request.form.get("publisher")
-    address = request.form.get("address")
-    year = request.form.get("year")
 
-    latex_reference = f"""@article{{{citekey},
-  author    = "{author}",
-  title     = "{title}",
-  publisher = "{publisher}",
-  address   = "{address}",
-  year      = {year}
-}}"""
+@app.route("/generate_articles_reference", methods=["POST", "GET"])
+def generate_articles_reference_route():
+    try:
+        citekey = request.form.get("citekey")
+        author = request.form.get("author")
+        title = request.form.get("title")
+        publisher = request.form.get("publisher")
+        address = request.form.get("address")
+        year = request.form.get("year")
+    except Exception:
+        return "Error", 500
+    latex_reference = generate_latex_reference("article", citekey, author, title, publisher, address, year)
     generate_articles_reference(citekey, author, title, publisher, address, year)
 
     return redirect("/")#f"<pre>{latex_reference}</pre>"
 
 @app.route("/generate_inproceedings_reference", methods=["POST", "GET"])
-def generate_inproceedings_reference():
-    citekey = request.form.get("citekey")
-    author = request.form.get("author")
-    title = request.form.get("title")
-    publisher = request.form.get("publisher")
-    address = request.form.get("address")
-    year = request.form.get("year")
-
-    latex_reference = f"""@inproceedings{{{citekey},
-  author    = "{author}",
-  title     = "{title}",
-  publisher = "{publisher}",
-  address   = "{address}",
-  year      = {year}
-}}"""
+def generate_inproceedings_reference_route():
+    try: 
+        citekey = request.form.get("citekey")
+        author = request.form.get("author")
+        title = request.form.get("title")
+        publisher = request.form.get("publisher")
+        address = request.form.get("address")
+        year = request.form.get("year")
+    except Exception:
+        return "Error", 500
+    
+    latex_reference = generate_latex_reference("inproceedings", citekey, author, title, publisher, address, year)
     generate_inproceedings_reference(citekey, author, title, publisher, address, year)
 
     return redirect("/")#f"<pre>{latex_reference}</pre>"

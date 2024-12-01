@@ -45,6 +45,8 @@ def create_table_inproceedings():
 def initialize_database():
     with app.app_context(): 
         create_table_books()
+        create_table_articles()
+        create_table_inproceedings()
 
 if __name__ == "__main__":
     initialize_database()

@@ -1,5 +1,17 @@
 from config import db, app
 from sqlalchemy import text
+import psycopg2
+from flask_sqlalchemy import SQLAlchemy
+
+conn = psycopg2.connect(dbname="postgres", user="lossis", password="yourpassword", host="localhost", port="5432")
+conn.autocommit = True
+cursor = conn.cursor()
+cursor.execute("CREATE DATABASE refrences;")
+cursor.close()
+conn.close()
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://lossis:yourpassword@localhost:5432/references"
+db = SQLAlchemy(app)
 
 table_name = "todo"
 
@@ -83,4 +95,5 @@ def setup_db():
 
 if __name__ == "__main__":
     with app.app_context():
+      reset_db()
       setup_db()

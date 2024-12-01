@@ -4,8 +4,8 @@ from sqlalchemy.sql import text
 #from entities.todo import Todo
 
 def get_books(citekey):
-    sql = ("SELECT * FROM books")
-    books = db.session.execute(sql, {"citekey": citekey}).result.fetchall()
+    sql = text("SELECT * FROM books WHERE citekey = :citekey")
+    books = db.session.execute(sql, {"citekey": citekey}).fetchall()
     return books 
 
 def get_all_books():
