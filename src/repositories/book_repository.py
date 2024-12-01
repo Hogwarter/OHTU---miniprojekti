@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 #from entities.todo import Todo
 
 def get_books(citekey):
-    sql = ("SELECT * FFROM books")
+    sql = ("SELECT * FROM books")
     books = db.session.execute(sql, {"citekey": citekey}).result.fetchall()
     return books 
 
@@ -19,7 +19,7 @@ def get_all_books():
 #    db.session.execute(sql, { "id": todo_id })
 #    db.session.commit()
 
-def generate_book_referencee(citekey, author, title, publisher, address, year):
+def generate_book_reference(citekey, author, title, publisher, address, year):
     sql = text(""" 
         INSERT INTO books (citekey, author, title, publisher, address, year) 
         VALUES (:citekey, :author, :title, :publisher, :address, :year)

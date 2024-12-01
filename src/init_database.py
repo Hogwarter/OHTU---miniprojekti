@@ -17,6 +17,31 @@ def create_table_books():
         );"""))
     db.session.commit()
 
+def create_table_articles():
+    db.session.execute(text("""        
+        CREATE TABLE IF NOT EXISTS articles (
+            citekey TEXT NOT NULL,
+            author TEXT NOT NULL,
+            title TEXT NOT NULL,
+            publisher TEXT NOT NULL,
+            address TEXT NOT NULL,
+            year INTEGER NOT NULL
+        );"""))
+    db.session.commit()
+
+def create_table_inproceedings():
+    db.session.execute(text("""        
+        CREATE TABLE IF NOT EXISTS inproceedings (
+            citekey TEXT NOT NULL,
+            author TEXT NOT NULL,
+            title TEXT NOT NULL,
+            publisher TEXT NOT NULL,
+            address TEXT NOT NULL,
+            year INTEGER NOT NULL
+        );"""))
+    db.session.commit()
+
+
 def initialize_database():
     with app.app_context(): 
         create_table_books()

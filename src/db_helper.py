@@ -34,6 +34,32 @@ def reset_db():
                 year INTEGER NOT NULL
             );"""))
         
+        db.session.execute(text("DROP TABLE IF EXISTS articles;"))
+        
+        # Recreattaa table
+        db.session.execute(text("""        
+            CREATE TABLE IF NOT EXISTS articles (
+                citekey TEXT NOT NULL,
+                author TEXT NOT NULL,
+                title TEXT NOT NULL,
+                publisher TEXT NOT NULL,
+                address TEXT NOT NULL,
+                year INTEGER NOT NULL
+            );"""))
+        
+        db.session.execute(text("DROP TABLE IF EXISTS inproceedings;"))
+        
+        # Recreattaa table
+        db.session.execute(text("""        
+            CREATE TABLE IF NOT EXISTS inproceedings (
+                citekey TEXT NOT NULL,
+                author TEXT NOT NULL,
+                title TEXT NOT NULL,
+                publisher TEXT NOT NULL,
+                address TEXT NOT NULL,
+                year INTEGER NOT NULL
+            );"""))
+
         db.session.commit()
 
 def setup_db():
