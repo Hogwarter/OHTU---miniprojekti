@@ -26,7 +26,7 @@ def create_table_articles():
             title TEXT NOT NULL,
             journal TEXT NOT NULL,
             volume TEXT NOT NULL,
-            year INTEGER NOT NULL
+            year INTEGER NOT NULL,
             pages TEXT NOT NULL
         );"""))
     db.session.commit()

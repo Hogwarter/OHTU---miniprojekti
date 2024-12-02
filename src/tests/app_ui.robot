@@ -26,9 +26,10 @@ Valitse Article Ja Tarkista Sisältö
     Page Should Contain     Citekey:
     Page Should Contain     Author:
     Page Should Contain     Title:
-    Page Should Contain     Publisher:
-    Page Should Contain     Address:
-    Page Should Contain     Year
+    Page Should Contain     journal:
+    Page Should Contain     volume:
+    Page Should Contain     Year:
+    Page Should Contain     Pages:
 
 Valitse Article, Täytä Lomake Ja Generoi
     [Tags]    Article Form
@@ -39,18 +40,20 @@ Valitse Article, Täytä Lomake Ja Generoi
     Input Text    name=citekey    Artti
     Input Text    name=author    Arttu
     Input Text    name=title    Artin elämä
-    Input Text    name=publisher    Otava
-    Input Text    name=address    Jump Street 21
+    Input Text    name=journal    Otava
+    Input Text    name=volume    Jump Street 21
     Input Text    name=year    2003
+    Input Text    name=pages    200-201
     Click Button    xpath=//button[text()="Generate"]
     Location Should Be  ${HOME_URL}/
 
     Page Should Contain   @article{ Artti,
     Page Should Contain   author = { Arttu },
     Page Should Contain   title = { Artin elämä },
-    Page Should Contain   publisher = { Otava },
-    Page Should Contain   address = { Jump Street 21 },
+    Page Should Contain   journal = { Otava },
+    Page Should Contain   volume = { Jump Street 21 },
     Page Should Contain   year = { 2003 }
+    Page Should Contain   pages = { 200-201 }
     Page Should Contain   }
 
 *** Keywords ***
