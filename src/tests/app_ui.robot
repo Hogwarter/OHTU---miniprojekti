@@ -56,6 +56,32 @@ Valitse Article, Täytä Lomake Ja Generoi
     Page Should Contain   pages = { 200-201 }
     Page Should Contain   }
 
+
+Valitse Inproceeding, Täytä Lomake Ja Generoi
+    [Tags]    Inproceeding Form
+    Go To  ${HOME_URL}
+    Select From List By Label    xpath=//select    Inproceeding
+    Click Button    xpath=//button[text()="Submit"]
+
+    Input Text    name=citekey    Inproca
+    Input Text    name=author    Imma
+    Input Text    name=title    Leikin iloa
+    Input Text    name=booktitle    Lahjakas
+    Input Text    name=publisher    Joona
+    Input Text    name=pages    186-189
+    Input Text    name=year    2003
+    Click Button    xpath=//button[text()="Generate"]
+    Location Should Be  ${HOME_URL}/
+
+    Page Should Contain   @inproceeding{ Inproca,
+    Page Should Contain   author = { Imma },
+    Page Should Contain   title = { Leikin iloa },
+    Page Should Contain   booktitle = { Lahjakas },
+    Page Should Contain   publisher = { Joona },
+    Page Should Contain   pages = { 186-189 },
+    Page Should Contain   year = { 2003 }
+    Page Should Contain   }
+
 *** Keywords ***
 Open And Configure Browser
     
