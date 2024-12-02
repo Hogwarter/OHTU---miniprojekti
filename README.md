@@ -23,7 +23,7 @@ Definition of done:
 * Todo apin legacy code kadonnut
 
 
-Hyväksymis kriteerit:
-* kahdella ensimmäisellä definition of done mukaan
+Hyväksymis kriteerit sprint 2:selle:
+* kaksi ensimmäistä tavoitetta definition of done mukaan
 * To do legacy koodia ei enään nähtävissä koodissa
   
