@@ -17,3 +17,11 @@ Definition of done:
 * Sprintin tehtävät on integroitu main-branchiin
 * Asiakas on hyväksynyt sprintin tuoton
 
+2 sprint goals:
+* Käyttäjä voi lisätä articlen ja nähdä lisätyt articlet pääsivulla
+* Käyttäjä voi lisätä inproceedings ja nähdä lisätyt inproceedings pääsivulla
+* Todo apin legacy code kadonnut
+Hyväksymis kriteerit:
+* kahdella ensimmäisellä definition of done mukaan
+* To do legacy koodia ei enään nähtävissä koodissa
+  
