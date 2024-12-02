@@ -42,9 +42,10 @@ def reset_db():
                 citekey TEXT NOT NULL,
                 author TEXT NOT NULL,
                 title TEXT NOT NULL,
-                publisher TEXT NOT NULL,
-                address TEXT NOT NULL,
-                year INTEGER NOT NULL
+                journal TEXT NOT NULL,
+                volume TEXT NOT NULL,
+                year INTEGER NOT NULL,
+                pages TEXT NOT NULL
             );
         """))
         db.session.execute(text("""
@@ -52,8 +53,9 @@ def reset_db():
                 citekey TEXT NOT NULL,
                 author TEXT NOT NULL,
                 title TEXT NOT NULL,
+                booktitle TEXT NOT NULL,
                 publisher TEXT NOT NULL,
-                address TEXT NOT NULL,
+                pages TEXT NOT NULL,
                 year INTEGER NOT NULL
             );
         """))

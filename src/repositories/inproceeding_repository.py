@@ -7,23 +7,24 @@ def get_inproceedings(citekey):
     return inproceedings 
 
 def get_all_inproceedings():
-    sql = text("SELECT citekey, author, title, publisher, address, year FROM inproceedings")
+    sql = text("SELECT citekey, author, title, booktitle, publisher, pages, year FROM inproceedings")
     result = db.session.execute(sql)
     inproceedings = result.fetchall()
     return inproceedings
 
-def save_inproceeding_reference(citekey, author, title, publisher, address, year):
+def save_inproceeding_reference(citekey, author, title, booktitle, publisher, pages, year):
     try:
         sql = text(""" 
-            INSERT INTO inproceedings (citekey, author, title, publisher, address, year) 
-            VALUES (:citekey, :author, :title, :publisher, :address, :year)
+            INSERT INTO inproceedings (citekey, author, title, booktitle, publisher, pages, year) 
+            VALUES (:citekey, :author, :title, :booktitle, :publisher, :pages, :year)
         """)
         db.session.execute(sql, { 
             "citekey": str(citekey), 
             "author": str(author), 
-            "title": str(title), 
-            "publisher": str(publisher), 
-            "address": str(address), 
+            "title": str(title),
+            "booktitle": str(booktitle), 
+            "publisher": str(publisher), #booktitle
+            "pages": str(pages), 
             "year": int(year) 
         })
         db.session.commit()
