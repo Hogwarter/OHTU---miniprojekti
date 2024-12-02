@@ -64,18 +64,20 @@ def generate_article_reference():
     citekey = request.form.get("citekey")
     author = request.form.get("author")
     title = request.form.get("title")
-    publisher = request.form.get("publisher")
-    address = request.form.get("address")
+    journal = request.form.get("journal")
+    volume = request.form.get("volume")
     year = request.form.get("year")
+    pages = request.form.get("pages")
 
     latex_reference = f"""@article{{{citekey},
   author    = "{author}",
   title     = "{title}",
-  publisher = "{publisher}",
-  address   = "{address}",
-  year      = {year}
+  journal = "{journal}",
+  volume   = "{volume}",
+  year      = {year},
+  pages      = "{pages}"
 }}"""
-    save_article_reference(citekey, author, title, publisher, address, year)
+    save_article_reference(citekey, author, title, journal, volume, year, pages)
 
     return redirect("/")#f"<pre>{latex_reference}</pre>"
 
@@ -84,20 +86,43 @@ def generate_inproceeding_reference():
     citekey = request.form.get("citekey")
     author = request.form.get("author")
     title = request.form.get("title")
+    booktitle = request.form.get("booktitle")
     publisher = request.form.get("publisher")
-    address = request.form.get("address")
+    pages = request.form.get("pages")
     year = request.form.get("year")
 
     latex_reference = f"""@inproceeding{{{citekey},
   author    = "{author}",
   title     = "{title}",
+  booktitle     = "{booktitle}",
   publisher = "{publisher}",
-  address   = "{address}",
+  pages   = "{pages}",
   year      = {year}
 }}"""
-    save_inproceeding_reference(citekey, author, title, publisher, address, year)
+    save_inproceeding_reference(citekey, author, title, booktitle, publisher, pages, year)
 
     return redirect("/")#f"<pre>{latex_reference}</pre>"
+
+@app.route("/delete_entry/<ref_type>/<citekey>", methods=["POST"])
+def delete_entry(ref_type, citekey):
+    citekey = request.form.get("citekey")
+    try:
+        if ref_type == "book":
+            sql = "DELETE FROM books WHERE citekey = :citekey"
+        elif ref_type == "article":
+            sql = "DELETE FROM articles WHERE citekey = :citekey"
+        elif ref_type == "inproceeding":
+            sql = "DELETE FROM inproceedings WHERE citekey = :citekey"
+        else:
+            flash("Invalid reference type.", "error")
+            return redirect("/")
+        
+        db.session.execute(sql, {"citekey": citekey})
+        db.session.commit()
+    except Exception as e:
+        app.logger.error(f"Error: {e}")
+    return redirect("/")
+
 
 # testausta varten oleva reitti
 if test_env:

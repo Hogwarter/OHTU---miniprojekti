@@ -46,11 +46,15 @@ Latex Lähde App
 @article{ {{ article.citekey }},
   author = { {{article.author}} },
   title = { {{article.title}} },
-  publisher = { {{ article.publisher }} },
-  address = { {{ article.address }} },
+  journal = { {{ article.journal }} },
+  volume = { {{ article.volume }} },
   year = { {{ article.year }} }
+  pages = { {{ article.pages }} }
     }
       </pre>
+      <form action="/delete_entry/article/{{ article.citekey }}" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
     </li>
   {% endfor %}
 </ul>
@@ -61,8 +65,9 @@ Latex Lähde App
 @inproceeding{ {{ inproceeding.citekey }},
   author = { {{inproceeding.author}} },
   title = { {{inproceeding.title}} },
+  booktitle = { {{inproceeding.booktitle}} },
   publisher = { {{ inproceeding.publisher }} },
-  address = { {{ inproceeding.address }} },
+  pages = { {{ inproceeding.pages }} },
   year = { {{ inproceeding.year }} }
     }
       </pre>
