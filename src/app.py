@@ -25,6 +25,9 @@ def new_article():
 def new_inproceeding():
     return render_template("inproceeding_form.html")
 
+@app.route("/show_latex")
+def show_latex():
+    return render_template("latex_form.html")
 
 @app.route("/new_reference", methods=["POST"])
 def new_reference():

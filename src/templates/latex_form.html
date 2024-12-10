@@ -1,32 +1,9 @@
-{% extends "layout.html" %}
-
-{% block title %}
-Latex Lähde App
-{% endblock %}
-
-{% block body %}
-
-<h2>Latex Lähde App</h2>
-
-<div>
-  things still unfinished: {{ unfinished }}
-</div>
-
-<form action="/new_reference" method="POST">
-  <label for="ref_type">Tyyppi:</label>
-  <select id="ref_type" name="ref_type" required>
-      <option value="">Select</option>
-      <option value="book">Book</option>
-      <option value="article">Article</option>
-      <option value="inproceeding">Inproceeding</option>
-  </select>
-  <button type="submit">Submit</button>
-</form>
-
-<form action="/show_latex" method="POST" style="display:inline;">
-  <button type="submit" class="btn btn-danger">Show in latex</button>
-</form>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Stored References</title>
+</head>
+<body>
 <h3>Stored References</h3>
 <ul>
   {% for book in books %}
@@ -56,9 +33,6 @@ Latex Lähde App
   pages = { {{ article.pages }} }
     }
       </pre>
-      <form action="/delete_entry/article/{{ article.citekey }}" method="POST" style="display:inline;">
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
     </li>
   {% endfor %}
 </ul>
@@ -78,5 +52,5 @@ Latex Lähde App
     </li>
   {% endfor %}
 </ul>
-
-{% endblock %}
+</body>
+</html>
